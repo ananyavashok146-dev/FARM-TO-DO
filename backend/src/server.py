@@ -8,6 +8,7 @@ from fastapi import FastAPI, status
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 from dal import ToDoDAL, ListSummary, ToDoList
 
@@ -129,3 +130,13 @@ def main(argv=sys.argv[1:]):
 
 if __name__ == "__main__":
     main()
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
