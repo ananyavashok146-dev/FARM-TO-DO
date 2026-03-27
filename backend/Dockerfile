@@ -1,10 +1,12 @@
-from python:3.9-slim
+FROM python:3.11-slim   
 
-workdir/usr/src/app
+WORKDIR /usr/src/app
 COPY requirements.txt ./
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-expose 3001
+COPY . .
 
-cmd ["python", "./src/server.py"]
+EXPOSE 3001
+
+CMD ["python", "app.py"]
